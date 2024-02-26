@@ -1,4 +1,4 @@
-import {Container, Box} from '@chakra-ui/react'
+import {Container, Box, Heading} from '@chakra-ui/react'
 import UnderConstructionAlert from '../components/underconstruction';
 import { useState } from 'react';
 
@@ -8,13 +8,22 @@ const Page = () => {
     return (
         <Container>
             
-            <Box borderRadius="lg" bg="gray" p={5}>
-                <h1>Procesamiento de datos -  Don Colchon</h1>
-            </Box>
             <UnderConstructionAlert />
+
+            <Box display={{md: 'flex'}}>
+            <Box flexGrow={1}>
+        
+        <Heading as="h2" variant="page-title" mt={4}>
+                Procesamiento de datos
+            </Heading>
+        <p>SARIMA Model</p>
+        </Box>
+    </Box>
             
-        </Container>
+    </Container>
+
     )
+
 }
 
 export default Page
