@@ -1,0 +1,28 @@
+{
+  "name": "tc2004-reto",
+  "version": "1.0.0",
+  "description": "Don Colchon - TC2004",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "prettier": "prettier --write .",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "Roberto Priego",
+  "license": "MIT",
+  "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^11.0.6",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.1.0",
+    "prettier": "^3.2.5"
+  }
+}
