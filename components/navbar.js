@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 
 import { HamburgerIcon } from '@chakra-ui/icons';
-import Logo from './logo';
+
 
 
 const LinkItem = ({ href, path, children }) => {
@@ -55,34 +55,37 @@ const Navbar = props => {
                 justify="space-between"
             >
                 <Flex align="center" mr={5}>
-            <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-                {/* <Logo /> */}
+            <Heading as="h1" size="lg" mr={150} letterSpacing={"tighter"}>
+                 Don Colchon
             </Heading>
             </Flex>
-            <Stack
-            direction={{ base: 'column', md: 'row' }}
-            display={{ base: 'none', md: 'flex' }}
-            width={{ base: 'full', md: 'auto' }}
-            alignItems="center"
-            flexGrow={1}
-            mt={{ base: 4, md: 0 }}
-            >
-        <LinkItem href="/status" path={path}>
-            Server status
-        </LinkItem>
-        <LinkItem href="/data" path={path}>
-            Data Generated
-        </LinkItem>
-        <LinkItem href="/archive" path={path}>
-            Archive
-        </LinkItem>
-        <LinkItem href="/settings" path={path}>
-            Settings
-        </LinkItem>
+                <Stack
+                    direction={{ base: 'column', md: 'row' }}
+                    display={{ base: 'none', md: 'flex' }}
+                    width={{ base: 'full', md: 'auto' }}
+                    alignItems="center"
+                    flexGrow={1}
+                    mt={{ base: 4, md: 0 }}
+                >
+            <LinkItem href="/status" path={path}>
+                Server status
+            </LinkItem>
+            <LinkItem href="/data" path={path}>
+                Archive
+            </LinkItem>
+            <LinkItem href="/settings" path={path}>
+                Settings
+            </LinkItem>
+            <LinkItem href="/logout" path={path}>
+                Log out
+            </LinkItem>
         
         
+        
+        
+        {/* Menu para moviles */}
         </Stack>
-    <Box flex={1} align="right">
+    <Box flex={1} align="left">
         <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu>
                 <MenuButton as={IconButton} icon={<HamburgerIcon/>} variant = "outline" aria-label="Options"/>

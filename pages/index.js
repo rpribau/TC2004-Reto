@@ -1,11 +1,16 @@
 import {Container, Box, Heading} from '@chakra-ui/react'
 import UnderConstructionAlert from '../components/underconstruction';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
 
 
 const Page = () => {
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => {
+        setIsClient(true)
+      }, [])
     
-    return (
+    return  (
+        
         <Container>
             
             <UnderConstructionAlert />
@@ -16,7 +21,7 @@ const Page = () => {
         <Heading as="h2" variant="page-title" mt={4}>
                 Procesamiento de datos
             </Heading>
-        <p>SARIMA Model</p>
+        
         </Box>
     </Box>
             
