@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactComponent as LogoOutline } from './icons/logo.svg';
 import styled from '@emotion/styled';
 import { useColorModeValue, Text } from '@chakra-ui/react';
 import Link from 'next/link';

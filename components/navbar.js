@@ -149,9 +149,68 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
                 <TbLogout />
                 Log out
               </LinkItem>
-
             </Stack>
           </Flex>
+
+        <Menu>
+            <MenuButton as={IconButton} icon={<HamburgerIcon />} variant="outline" display={{ base: 'flex', md: 'none' }} ml="auto" />
+          <MenuList>
+            <MenuItem>
+              <LinkItem 
+                href="/" 
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
+                >
+                <IoServer />
+                Server Status
+              </LinkItem>
+            </MenuItem>
+            <MenuItem>
+              <LinkItem 
+                href="/" 
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
+                >
+              <FaArchive />
+                Archive
+              </LinkItem>
+            </MenuItem>
+            <MenuItem>
+              <LinkItem 
+                href="/" 
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
+                >
+                <IoSettings />
+                Settings
+              </LinkItem>
+            </MenuItem>
+            <MenuItem>
+              <LinkItem
+                target="_blank"
+                href="/"
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
+              >
+                <TbLogout />
+                Log out
+              </LinkItem>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+          
         </Container>
       </Box>
     )
