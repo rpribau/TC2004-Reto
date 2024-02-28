@@ -19,6 +19,7 @@ import { FaArchive } from "react-icons/fa";
 import { IoServer } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
 import { IoSettings } from "react-icons/io5";
+import {ThemeToggleButton} from './theme-toggle-button';
 
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import Logo from './logo';
@@ -210,6 +211,9 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
             </MenuItem>
           </MenuList>
         </Menu>
+
+        <ThemeToggleButton />
+        
           
         </Container>
       </Box>

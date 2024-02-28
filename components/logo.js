@@ -26,7 +26,7 @@ const Logo = () => {
                         fontFamily='M PLUS Rounded 1c'
                         fontWeight='bold'
                         ml={3}
-                        mr={100}>
+                        mr={30}>
                         Don Colchon
                     </Text>
                 </LogoBox>
