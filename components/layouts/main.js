@@ -8,11 +8,12 @@ const Main = ({ children, router }) => {
             <Head>
                 <meta name = "viewport" content = "width=device-width, initial-scale=1" />
                 <title>
-                    Don Colchon Database - Homepage
+                    Don Colchon - IT
                 </title>
             </Head>
-            <Navbar path={router.pathname} />
-            
+
+            <Navbar path={router.asPath} />
+        
             <Container maxW="container.md" pt={14}>
                 
             {children}

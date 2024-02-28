@@ -14,89 +14,147 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { HamburgerIcon } from '@chakra-ui/icons'
+import { FaArchive } from "react-icons/fa";
+import { IoServer } from "react-icons/io5";
+import { TbLogout } from "react-icons/tb";
+import { IoSettings } from "react-icons/io5";
 
+import { useState, useEffect, useRef, forwardRef } from 'react'
+import Logo from './logo';
 
-
-const LinkItem = ({ href, path, children }) => {
-    const active = path === href;
-    const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900');
+const LinkItem = ({ href, path, target, children, ...props }) => {
+    const active = useColorModeValue('purple.500')
+    const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
     return (
-        <NextLink href={href}>
-            <Link
-                p={2}
-                bg={active ? 'grassTeal' : undefined}
-                color={active ? '#202023' : inactiveColor}>
-                {children}
-                </Link>
-        </NextLink>
+      <Link
+        as={NextLink}
+        href={href}
+        scroll={false}
+        p={2}
+        bg={active ? 'grassTeal' : undefined}
+        color={active ? '#202023' : inactiveColor}
+        target={target}
+        {...props}
+      >
+        {children}
+      </Link>
     )
-}
-
-const Navbar = props => {
-    const { path } = props;
-
-    return(
-        <Box
+  }
+  
+  const MenuLink = forwardRef((props, ref) => <Link ref={ref} as={NextLink} {...props} />)
+  
+  const Navbar = (props) => {
+    const { path } = props
+    const [isOpen, setIsOpen] = useState(false)
+    const menuRef = useRef(null)
+  
+    const handleMenuToggle = () => {
+      setIsOpen(!isOpen)
+    }
+  
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false)
+      }
+    }
+  
+    useEffect(() => {
+      document.addEventListener('click', handleClickOutside)
+      return () => {
+        document.removeEventListener('click', handleClickOutside)
+      }
+    }, [])
+  
+    return (
+      <Box
         position="fixed"
         as="nav"
         w="100%"
         bg={useColorModeValue('#ffffff40', '#20202380')}
-        style={{backdropFilter: 'blur(10px)'}}
+        style={{ backdropFilter: 'blur(10px)' }}
         zIndex={1}
         {...props}
-        >
-            <Container 
-                display = "flex" 
-                p={2} 
-                maxW = "container.md" 
-                wrap="wrap" 
-                align="center" 
-                justify="space-between"
+        ref={menuRef}
+      >
+        <Container 
+            display="flex" 
+            p={2} 
+            maxW="container.md" 
+            wrap="wrap" 
+            align="center" 
+            justify="space-between">
+
+          <Flex align="center" mr={5}>
+           
+              <Heading as="h1" size="lg">
+                <Logo />
+              </Heading>
+           
+  
+            <Stack
+              direction={{ base: 'column', md: 'row' }}
+              display={{ base: isOpen ? 'flex' : 'none', md: 'flex' }}
+              width={{ base: 'full', md: 'auto' }}
+              alignItems="center"
+              flexGrow={1}
+              mt={{ base: 4, md: 0 }}
+              spacing={{ base: 2, md: 4 }}
             >
-                <Flex align="center" mr={5}>
-            <Heading as="h1" size="lg" mr={150} letterSpacing={"tighter"}>
-                 Don Colchon
-            </Heading>
-            </Flex>
-                <Stack
-                    direction={{ base: 'column', md: 'row' }}
-                    display={{ base: 'none', md: 'flex' }}
-                    width={{ base: 'full', md: 'auto' }}
-                    alignItems="center"
-                    flexGrow={1}
-                    mt={{ base: 4, md: 0 }}
+              <LinkItem 
+                href="/" 
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
                 >
-            <LinkItem href="/status" path={path}>
-                Server status
-            </LinkItem>
-            <LinkItem href="/data" path={path}>
+                <IoServer />
+                Server Status
+              </LinkItem>
+  
+              <LinkItem 
+                href="/" 
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
+                >
+              <FaArchive />
                 Archive
-            </LinkItem>
-            <LinkItem href="/settings" path={path}>
+              </LinkItem>
+  
+              <LinkItem 
+                href="/" 
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
+                >
+                <IoSettings />
                 Settings
-            </LinkItem>
-            <LinkItem href="/logout" path={path}>
+              </LinkItem>
+            
+              <LinkItem
+                target="_blank"
+                href="/"
+                path={path}
+                display="inline-flex"
+                alignItems="center"
+                style={{ gap: 2 }}
+                pl={2}
+              >
+                <TbLogout />
                 Log out
-            </LinkItem>
-        
-        
-        
-        
-        {/* Menu para moviles */}
-        </Stack>
-    <Box flex={1} align="left">
-        <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
-            <Menu>
-                <MenuButton as={IconButton} icon={<HamburgerIcon/>} variant = "outline" aria-label="Options"/>
-            </Menu>
+              </LinkItem>
 
-    </Box>
-    </Box>
-
+            </Stack>
+          </Flex>
         </Container>
-        </Box>
+      </Box>
     )
-}
+  }
 
 export default Navbar;
