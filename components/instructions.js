@@ -3,6 +3,7 @@ import { List, ListItem, ListIcon, Box, Text, Button, Modal, ModalOverlay, Modal
 import { MdCheckCircle } from 'react-icons/md';
 import { PiWarningCircleFill } from "react-icons/pi";
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Image } from '@chakra-ui/react'
 
 const Instructions = () => {
     const [isOpenModalOne, setIsOpenModalOne] = useState(false);
@@ -72,18 +73,22 @@ const Instructions = () => {
       </Box>
 
       {/* ModelInstructionsOne Modal */}
-      <Modal isOpen={isOpenModalOne} onClose={closeModalOne}>
+      <Modal isOpen={isOpenModalOne} onClose={closeModalOne} >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Instructions for Model One</ModalHeader>
+        <ModalContent mb={10} size="xl" maxW="55%" alignItems="center" justifyContent="center">
+          <ModalHeader>RandomForest v.1</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Inserta aquí el contenido de las instrucciones para el Modelo Uno.</Text>
+            <Box>
+              <Image
+                src="https://i.imgur.com/uZ7SbIS.png"
+                alt="Formato 1"
+                style={{ width: '100%', height: 'auto' }} // Ajustar tamaño de la imagen
+                
+              />
+            </Box>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={closeModalOne}>
-              Close
-            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -91,19 +96,23 @@ const Instructions = () => {
       {/* ModelInstructionsTwo Modal */}
       <Modal isOpen={isOpenModalTwo} onClose={closeModalTwo}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Instructions for Model Two</ModalHeader>
+        <ModalContent mb={10} size="xl" maxW="75%" alignItems="center" justifyContent="center">
+          <ModalHeader>Formato 2: SARIMAX, RandomForest v.2 y XGBoost</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Inserta aquí el contenido de las instrucciones para el Modelo Dos.</Text>
+            <Box>
+              <Image
+                src="https://i.imgur.com/EZVxoP2.png"
+                alt="Formato 2"
+                style={{ width: '100%', height: 'auto' }} // Ajustar tamaño de la imagen
+              />
+            </Box>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={closeModalTwo}>
-              Close
-            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
+
     </Box>
   );
 }
