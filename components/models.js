@@ -1,48 +1,43 @@
-import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react";
-import { useState, useRef } from "react";
-import { IoIosCloudUpload } from "react-icons/io";
+import { FaTree } from "react-icons/fa";
+import { SlGraph } from "react-icons/sl";
+import { MdAutoGraph } from "react-icons/md";
+import { useColorModeValue, Box, Flex, Button, Grid } from "@chakra-ui/react";
 
-const SelectModels = () => {
+const Models = () => {
+    const textColor = useColorModeValue("black", "black");
+    const iconColor = useColorModeValue("black", "black");
+
     return (
-        <Box mt={10} display="flex" justifyContent="center" flexDirection="column">
-            <Button
-                colorScheme="green"
-            >
+        <Grid templateColumns="repeat(2, 1fr)" gap={4} mt={5}>
+            <Button colorScheme="green" size="lg">
                 <Flex align="center">
-                    <IoIosCloudUpload style={{ marginRight: "0.5rem" }} />
+                    <FaTree style={{ marginRight: "0.5rem" }} />
                     Random Forest v.1
                 </Flex>
             </Button>
 
-            <Button
-                colorScheme="cyan"
-            >
+            <Button colorScheme="red" size="lg">
                 <Flex align="center">
-                    <IoIosCloudUpload style={{ marginRight: "0.5rem" }} />
+                    <FaTree style={{ marginRight: "0.5rem" }} />
                     Random Forest v.2
                 </Flex>
             </Button>
 
-            <Button
-                colorScheme="orange"
-            >
+            <Button colorScheme="orange" size="lg">
                 <Flex align="center">
-                    <IoIosCloudUpload style={{ marginRight: "0.5rem" }} />
+                    <SlGraph style={{ marginRight: "0.5rem" }} />
                     SARIMAX
                 </Flex>
             </Button>
 
-            <Button
-                colorScheme="purple"
-            >
+            <Button colorScheme="purple" size="lg">
                 <Flex align="center">
-                    <IoIosCloudUpload style={{ marginRight: "0.5rem" }} />
+                    <MdAutoGraph style={{ marginRight: "0.5rem" }} />
                     XGBoost
-                </Flex> 
+                </Flex>
             </Button>
-        </Box>
-    );
-}
+        </Grid>
+    );   
+};
 
-export default SelectModels;
-    
+export default Models;
