@@ -23,14 +23,9 @@ const Page = () => {
                     <Heading as="h2" variant="page-title" mt={4}>
                         Procesamiento de datos
                     </Heading>
-
                     {/* Add your explanation text here */}
-                    <Text mt={4}>Asegurate que el formato de tus datasets cumplan los siguientes features: </Text>
-
+                    <Text mt={4}>Asegurate que el formato de tus datasets cumpla los siguientes features y/o formato: </Text>
                     <Instructions />
-
-                    
-                    
                     </Box>
                 </Box>
 
@@ -40,8 +35,6 @@ const Page = () => {
                     Modelos
                 </Heading>
                 <Models />
-
-
             </Container>
         )
 }
