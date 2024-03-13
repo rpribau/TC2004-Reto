@@ -104,7 +104,7 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
               spacing={{ base: 2, md: 4 }}
             >
               <LinkItem 
-                href="/" 
+                href="http://127.0.0.1:8000" 
                 path={path}
                 display="inline-flex"
                 alignItems="center"
@@ -140,8 +140,8 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
               </LinkItem>
             
               <LinkItem
-                target="_blank"
-                href="/"
+                
+                href="https://doncolchon.com.mx"
                 path={path}
                 display="inline-flex"
                 alignItems="center"
