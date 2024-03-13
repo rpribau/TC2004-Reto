@@ -23,6 +23,7 @@ import {ThemeToggleButton} from './theme-toggle-button';
 
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import Logo from './logo';
+import SettingModal from './modal/setting_modal';
 
 const LinkItem = ({ href, path, target, children, ...props }) => {
     const active = useColorModeValue('purple.500')
