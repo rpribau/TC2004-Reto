@@ -65,7 +65,7 @@ function RFModal() {
 
                             <Stat mr={10}>
                                 <StatLabel>{loading ? <Skeleton height="10px" width="50px" /> : "MAPE"}</StatLabel>
-                                <StatNumber>{loading ? <Skeleton height="10px" width="50px" /> : <><StatArrow type='increase' /> 24.9487</>}</StatNumber>
+                                <StatNumber>{loading ? <Skeleton height="10px" width="50px" /> : <><StatArrow type='increase' /> 0.2495</>}</StatNumber>
                                 <StatHelpText>{loading ? <Skeleton height="10px" width="100px" /> : "02/01/2022 - 31/12/2023"}</StatHelpText>
                             </Stat>
                         </StatGroup>
