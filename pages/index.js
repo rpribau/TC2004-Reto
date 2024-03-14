@@ -1,4 +1,4 @@
-import { Container, Box, Heading } from '@chakra-ui/react'
+import { Container, Box, Heading, Flex } from '@chakra-ui/react'
 import UnderConstructionAlert from '../components/underconstruction';
 import { useState, useEffect } from 'react'
 import UploadButton from '../components/upload-button'; // Import the UploadButton component
@@ -7,7 +7,6 @@ import Models from '../components/models'
 import Instructions from '../components/instructions'
 import BotonRequest from '../components/modal/boton_request';
 import HolidayButton from '../components/holiday_button';
-
 
 const Page = () => {
     const [isClient, setIsClient] = useState(false)
@@ -28,20 +27,27 @@ const Page = () => {
                     {/* Add your explanation text here */}
                     <Text mt={4}>Asegurate que el formato de tus datasets cumpla los siguientes features y/o formato: </Text>
                     <Instructions />
-                    </Box>
                 </Box>
+            </Box>
 
-                {isClient && <UploadButton />}
-                {isClient && <BotonRequest />}
-                {isClient && <HolidayButton />}
+            <Flex justifyContent="space-between" flexWrap="wrap">
+                <Box width={['100%', '50%']} mb={1} mt={-5}>
+                    {isClient && <UploadButton />}
+                </Box>
+                <Box width={['100%', '50%']} mb={4}>
+                    {isClient && <BotonRequest />}
+                </Box>
+                <Box width={['100%', '50%']} mt={-5}>
+                    {isClient && <HolidayButton />}
+                </Box>
+            </Flex>
 
-
-                <Heading as="h2" variant="page-title" mt={7}>
-                    Modelos
-                </Heading>
-                <Models />
-            </Container>
-        )
+            <Heading as="h2" variant="page-title" mt={7}>
+                Modelos
+            </Heading>
+            <Models />
+        </Container>
+    )
 }
 
 export default Page
