@@ -23,7 +23,7 @@ const Page = () => {
                 <Box flexGrow={1}>
 
                     <Heading as="h2" variant="page-title" mt={4}>
-                        Procesamiento de datos
+                        SPiD - ToolKit
                     </Heading>
                     {/* Add your explanation text here */}
                     <Text mt={4}>Asegurate que el formato de tus datasets cumpla los siguientes features y/o formato: </Text>
