@@ -31,7 +31,7 @@ const Page = () => {
                     </Box>
                 </Box>
 
-                <UploadButton />
+                {isClient && <UploadButton />}
                 {isClient && <BotonRequest />}
                 {isClient && <HolidayButton />}
 

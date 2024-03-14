@@ -1,6 +1,7 @@
 import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 import { IoIosCloudUpload } from "react-icons/io";
+import { BASE_URL } from "./env/enviorment";
 import axios from 'axios';
 import { BASE_URL } from "./env/enviorment";
 

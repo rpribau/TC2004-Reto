@@ -1,4 +1,4 @@
-import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react";
+import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, Textarea, ModalFooter } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 import { LuPartyPopper } from "react-icons/lu";
 import axios from 'axios';
@@ -7,10 +7,16 @@ function HolidayButton() {
     const [isLoading, setIsLoading] = useState(false);
     const [fileError, setFileError] = useState(false);
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [formData, setFormData] = useState({ name: "", date: "", effect: "" });
     const fileInputRef = useRef(null);
 
     const handleClick = () => {
-        fileInputRef.current.click();
+        setIsOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsOpen(false);
     };
 
     const handleFileChange = (event) => {
@@ -44,6 +50,24 @@ function HolidayButton() {
         }
     };
 
+    const handleInputChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+
+    const handleSubmit = () => {
+        // Aquí puedes enviar los datos del formulario por HTTP POST
+        // Por ejemplo:
+        axios.post(BASE_URL + "holiday/add", formData)
+            .then(response => {
+                setShowSuccessAlert(true);
+                setIsOpen(false);
+                // Manejar la respuesta del servidor si es necesario
+            })
+            .catch(error => {
+                // Manejar errores de la solicitud
+            });
+    };
+
     const handleCloseSuccessAlert = () => {
         setShowSuccessAlert(false);
     };
@@ -58,7 +82,7 @@ function HolidayButton() {
             >
                 <Flex align="center">
                     <LuPartyPopper style={{ marginRight: "0.5rem" }} />
-                    Agregar dia festivo/promocional
+                    Agregar día festivo/promocional
                 </Flex>
             </Button>
             <input
@@ -109,6 +133,31 @@ function HolidayButton() {
                     <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
                 </Alert>
             )}
+            <Modal isOpen={isOpen} onClose={handleClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Agregar Día Festivo/Promocional</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <FormControl>
+                            <FormLabel>Nombre</FormLabel>
+                            <Input name="name" value={formData.name} onChange={handleInputChange} />
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Fecha</FormLabel>
+                            <Input type="date" name="date" value={formData.date} onChange={handleInputChange} />
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Efecto</FormLabel>
+                            <Textarea name="effect" value={formData.effect} onChange={handleInputChange} />
+                        </FormControl>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="pink" mr={3} onClick={handleSubmit}>Guardar</Button>
+                        <Button onClick={handleClose}>Cancelar</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </Box>
     );
 }
