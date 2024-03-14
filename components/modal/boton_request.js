@@ -46,7 +46,7 @@ function BotonRequest() {
             >
                 <Flex align="center">
                     <SiAiohttp style={{ marginRight: "0.5rem" }} />
-                    Enviar solicitud
+                    Consultar ventas
                 </Flex>
             </Button>
             {requestError && (

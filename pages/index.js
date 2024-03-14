@@ -7,6 +7,7 @@ import Models from '../components/models'
 import Instructions from '../components/instructions'
 import BotonRequest from '../components/modal/boton_request';
 import HolidayButton from '../components/holiday_button';
+import HolidayUpload from '../components/holiday-upload';
 
 const Page = () => {
     const [isClient, setIsClient] = useState(false)
@@ -31,14 +32,16 @@ const Page = () => {
             </Box>
 
             <Flex justifyContent="space-between" flexWrap="wrap">
-                <Box width={['100%', '50%']} mb={1} mt={-5}>
+                <Box width={['80%', '50%']} mb={1} mt={-5}>
                     {isClient && <UploadButton />}
                 </Box>
-                <Box width={['100%', '50%']} mb={4}>
+                <Box width={['80%', '50%']} mb={4}>
                     {isClient && <BotonRequest />}
                 </Box>
             </Flex>
             {isClient && <HolidayButton />}
+            {isClient && <HolidayUpload />}
+
 
             <Heading as="h2" variant="page-title" mt={7}>
                 Modelos
