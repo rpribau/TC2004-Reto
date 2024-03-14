@@ -8,7 +8,7 @@ During the class TC2004B - Data Science Analysis, we develop a business tool for
 - SARIMAX
 - XGBoost
 
-For disclosure statement made by Don Colchon, **we are NOT going to share** the information used during this project.
+For disclosure statement made by Don Colchon, **we are NOT going to share** the original information used during this project.
 
 ## Usage
 
