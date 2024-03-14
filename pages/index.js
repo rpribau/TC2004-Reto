@@ -5,6 +5,7 @@ import UploadButton from '../components/upload-button'; // Import the UploadButt
 import { Text } from '@chakra-ui/react'
 import Models from '../components/models'
 import Instructions from '../components/instructions'
+import BotonRequest from '../components/modal/boton_request';
 
 
 const Page = () => {
@@ -30,6 +31,7 @@ const Page = () => {
                 </Box>
 
                 <UploadButton />
+                {isClient && <BotonRequest />}
 
                 <Heading as="h2" variant="page-title" mt={7}>
                     Modelos
