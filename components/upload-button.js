@@ -2,6 +2,7 @@ import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescript
 import { useState, useRef } from "react";
 import { IoIosCloudUpload } from "react-icons/io";
 import axios from 'axios';
+import { BASE_URL } from "./env/enviorment";
 
 function UploadButton() {
     const [isLoading, setIsLoading] = useState(false);

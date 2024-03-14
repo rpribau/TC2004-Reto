@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../env/enviorment";
 import { SiAiohttp } from "react-icons/si";
-import { BASE_URL } from "../env/enviorment";
+
 
 function BotonRequest() {
     const [isLoading, setIsLoading] = useState(false);
