@@ -38,6 +38,7 @@ function UploadButton() {
                     setIsLoading(false);
                     setShowSuccessAlert(true);
                     // Aquí puedes manejar la respuesta del servidor si es necesario
+                    fileInputRef.current.value = null; // Resetear el valor del input de archivo
                 })
                 .catch(error => {
                     setIsLoading(false);
