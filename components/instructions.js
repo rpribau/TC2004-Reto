@@ -81,7 +81,7 @@ const Instructions = () => {
           <ModalBody>
             <Box>
               <Image
-                src="https://i.imgur.com/uZ7SbIS.png"
+                src="https://imagizer.imageshack.com/img924/8099/3sJUQE.png"
                 alt="Formato 1"
                 style={{ width: '100%', height: 'auto' }} // Ajustar tamaño de la imagen
                 
@@ -102,7 +102,7 @@ const Instructions = () => {
           <ModalBody>
             <Box>
               <Image
-                src="https://i.imgur.com/EZVxoP2.png"
+                src="https://imagizer.imageshack.com/img923/6729/lx5Xqx.png"
                 alt="Formato 2"
                 style={{ width: '100%', height: 'auto' }} // Ajustar tamaño de la imagen
               />
