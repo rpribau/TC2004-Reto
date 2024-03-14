@@ -73,7 +73,7 @@ function HolidayButton() {
     };
 
     return (
-        <Box mt={5} display="flex" justifyContent="center" flexDirection="column">
+        <Box mt={1} display="flex" justifyContent="center" flexDirection="column">
             <Button
                 colorScheme="pink"
                 onClick={handleClick}

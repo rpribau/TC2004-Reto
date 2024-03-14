@@ -37,10 +37,8 @@ const Page = () => {
                 <Box width={['100%', '50%']} mb={4}>
                     {isClient && <BotonRequest />}
                 </Box>
-                <Box width={['100%', '50%']} mt={-5}>
-                    {isClient && <HolidayButton />}
-                </Box>
             </Flex>
+            {isClient && <HolidayButton />}
 
             <Heading as="h2" variant="page-title" mt={7}>
                 Modelos
