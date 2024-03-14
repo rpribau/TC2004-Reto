@@ -1,22 +1,18 @@
-import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, Textarea, ModalFooter } from "@chakra-ui/react";
+import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-import { LuPartyPopper } from "react-icons/lu";
+import { MdDiscount } from "react-icons/md";
+import { BASE_URL } from "./env/enviorment";
 import axios from 'axios';
 
-function HolidayButton() {
+
+function PromocionUpload() {
     const [isLoading, setIsLoading] = useState(false);
     const [fileError, setFileError] = useState(false);
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const [formData, setFormData] = useState({ name: "", date: "", effect: "" });
     const fileInputRef = useRef(null);
 
     const handleClick = () => {
-        setIsOpen(true);
-    };
-
-    const handleClose = () => {
-        setIsOpen(false);
+        fileInputRef.current.click();
     };
 
     const handleFileChange = (event) => {
@@ -37,11 +33,12 @@ function HolidayButton() {
             formData.append('file', file);
 
             // Perform HTTP POST request using Axios
-            axios.post(BASE_URL + "sales/upload", formData)
+            axios.post(BASE_URL + "discounts/upload", formData)
                 .then(response => {
                     setIsLoading(false);
                     setShowSuccessAlert(true);
                     // Aquí puedes manejar la respuesta del servidor si es necesario
+                    fileInputRef.current.value = null; // Resetear el valor del input de archivo
                 })
                 .catch(error => {
                     setIsLoading(false);
@@ -50,39 +47,21 @@ function HolidayButton() {
         }
     };
 
-    const handleInputChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value });
-    };
-
-    const handleSubmit = () => {
-        // Aquí puedes enviar los datos del formulario por HTTP POST
-        // Por ejemplo:
-        axios.post(BASE_URL + "holiday/add", formData)
-            .then(response => {
-                setShowSuccessAlert(true);
-                setIsOpen(false);
-                // Manejar la respuesta del servidor si es necesario
-            })
-            .catch(error => {
-                // Manejar errores de la solicitud
-            });
-    };
-
     const handleCloseSuccessAlert = () => {
         setShowSuccessAlert(false);
     };
 
     return (
-        <Box mt={1} display="flex" justifyContent="center" flexDirection="column">
+        <Box mt={3} display="flex" justifyContent="center" flexDirection="column">
             <Button
-                colorScheme="pink"
+                colorScheme="telegram"
                 onClick={handleClick}
                 isLoading={isLoading}
                 loadingText="Uploading..."
             >
                 <Flex align="center">
-                    <LuPartyPopper style={{ marginRight: "0.5rem" }} />
-                    Agregar día festivo
+                    <MdDiscount style={{ marginRight: "0.5rem" }} />
+                    Agregar día promocional (.csv)
                 </Flex>
             </Button>
             <input
@@ -133,33 +112,8 @@ function HolidayButton() {
                     <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
                 </Alert>
             )}
-            <Modal isOpen={isOpen} onClose={handleClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Agregar Día Festivo/Promocional</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <FormControl>
-                            <FormLabel>Nombre</FormLabel>
-                            <Input name="name" value={formData.name} onChange={handleInputChange} />
-                        </FormControl>
-                        <FormControl mt={4}>
-                            <FormLabel>Fecha</FormLabel>
-                            <Input type="date" name="date" value={formData.date} onChange={handleInputChange} />
-                        </FormControl>
-                        <FormControl mt={4}>
-                            <FormLabel>Efecto</FormLabel>
-                            <Textarea name="effect" value={formData.effect} onChange={handleInputChange} />
-                        </FormControl>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button colorScheme="pink" mr={3} onClick={handleSubmit}>Guardar</Button>
-                        <Button onClick={handleClose}>Cancelar</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
         </Box>
     );
 }
 
-export default HolidayButton;
+export default PromocionUpload;

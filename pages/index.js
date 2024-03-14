@@ -9,6 +9,7 @@ import BotonRequest from '../components/modal/boton_request';
 import HolidayButton from '../components/holiday_button';
 import HolidayUpload from '../components/holiday-upload';
 import PromocionButton from '../components/promocion';
+import PromocionUpload from '../components/promocion-upload';
 
 const Page = () => {
     const [isClient, setIsClient] = useState(false)
@@ -43,6 +44,7 @@ const Page = () => {
             {isClient && <HolidayButton />}
             {isClient && <HolidayUpload />}
             {isClient && <PromocionButton />}
+            {isClient && <PromocionUpload />}
 
 
 

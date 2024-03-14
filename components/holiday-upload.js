@@ -61,7 +61,7 @@ function HolidayUpload() {
             >
                 <Flex align="center">
                     <LuPartyPopper style={{ marginRight: "0.5rem" }} />
-                    Agregar día festivo/promocional (.csv)
+                    Agregar día festivo (.csv)
                 </Flex>
             </Button>
             <input
