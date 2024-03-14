@@ -1,4 +1,4 @@
-import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Table, Thead, Tbody, Tr, Th, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../env/enviorment";
@@ -9,6 +9,7 @@ function BotonRequest() {
     const [requestError, setRequestError] = useState(false);
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const [responseData, setResponseData] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     const handleClick = () => {
         setIsLoading(true);
@@ -17,10 +18,11 @@ function BotonRequest() {
         // Aquí realizamos la solicitud HTTP
         axios.get(BASE_URL + "sales", /* Datos que quieres enviar */)
             .then(response => {
-                // Si la solicitud es exitosa, muestra la alerta de éxito
+                // Si la solicitud es exitosa, muestra la modal con la tabla
                 setIsLoading(false);
                 setShowSuccessAlert(true);
-                setResponseData(response.data); // Guardar los datos de la respuesta en el estado
+                setResponseData(response.data.slice(0, 5)); // Guardar los primeros 5 datos de la respuesta en el estado
+                setShowModal(true); // Mostrar el modal
             })
             .catch(error => {
                 // Si hay un error en la solicitud, muestra la alerta de error
@@ -30,8 +32,8 @@ function BotonRequest() {
             });
     };
 
-    const handleCloseSuccessAlert = () => {
-        setShowSuccessAlert(false);
+    const handleCloseModal = () => {
+        setShowModal(false);
     };
 
     return (
@@ -67,37 +69,42 @@ function BotonRequest() {
                     </AlertDescription>
                 </Alert>
             )}
-            {showSuccessAlert && (
-                <Box mt={4}>
-                    <Table variant="simple">
-                        <Thead>
-                            <Tr>
-                                <Th>id</Th>
-                                <Th>date</Th>
-                                <Th>product</Th>
-                                <Th>location</Th>
-                                <Th>order_size</Th>
-                                <Th>unit_price</Th>
-                                {/* Agregar más columnas según la estructura de tus datos */}
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {responseData.map((item, index) => (
-                                <Tr key={index}>
-                                    <Td>{item.id}</Td>
-                                    <Td>{item.date}</Td>
-                                    <Td>{item.product}</Td>
-                                    <Td>{item.location}</Td>
-                                    <Td>{item.order_size}</Td>
-                                    <Td>{item.unit_price}</Td>
-                                    {/* Renderizar más columnas según la estructura de tus datos */}
+            <Modal isOpen={showModal} onClose={handleCloseModal}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Tabla de datos</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Table variant="simple">
+                            <Thead>
+                                <Tr>
+                                    <Th>id</Th>
+                                    <Th>date</Th>
+                                    <Th>product</Th>
+                                    <Th>location</Th>
+                                    <Th>order_size</Th>
+                                    <Th>unit_price</Th>
                                 </Tr>
-                            ))}
-                        </Tbody>
-                    </Table>
-                    <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
-                </Box>
-            )}
+                            </Thead>
+                            <Tbody>
+                                {responseData.map((item, index) => (
+                                    <Tr key={index}>
+                                        <Td>{item.id}</Td>
+                                        <Td>{item.date}</Td>
+                                        <Td>{item.product}</Td>
+                                        <Td>{item.location}</Td>
+                                        <Td>{item.order_size}</Td>
+                                        <Td>{item.unit_price}</Td>
+                                    </Tr>
+                                ))}
+                            </Tbody>
+                        </Table>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="blue" onClick={handleCloseModal}>Cerrar</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </Box>
     );
 }
