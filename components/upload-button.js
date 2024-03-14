@@ -1,12 +1,12 @@
 import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 import { IoIosCloudUpload } from "react-icons/io";
-
+import axios from 'axios';
 
 function UploadButton() {
     const [isLoading, setIsLoading] = useState(false);
     const [fileError, setFileError] = useState(false);
-    const [showSuccessAlert, setShowSuccessAlert] = useState(false); // Added state variable
+    const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const fileInputRef = useRef(null);
 
     const handleClick = () => {
@@ -26,18 +26,26 @@ function UploadButton() {
                 return;
             }
 
-            // Perform upload logic here
+            // Create FormData object to send file
+            const formData = new FormData();
+            formData.append('file', file);
 
-            // Simulating upload delay
-            setTimeout(() => {
-                setIsLoading(false);
-                setShowSuccessAlert(true); // Show success alert after upload
-            }, 2000);
+            // Perform HTTP POST request using Axios
+            axios.post(BASE_URL + "sales/upload", formData)
+                .then(response => {
+                    setIsLoading(false);
+                    setShowSuccessAlert(true);
+                    // Aquí puedes manejar la respuesta del servidor si es necesario
+                })
+                .catch(error => {
+                    setIsLoading(false);
+                    // Aquí puedes manejar los errores de la solicitud
+                });
         }
     };
 
     const handleCloseSuccessAlert = () => {
-        setShowSuccessAlert(false); // Close success alert when user clicks close button
+        setShowSuccessAlert(false);
     };
 
     return (
@@ -57,6 +65,7 @@ function UploadButton() {
                 type="file"
                 ref={fileInputRef}
                 style={{ display: "none" }}
+                accept=".csv" // Solo permitir archivos CSV
                 onChange={handleFileChange}
             />
             {fileError && (
@@ -72,14 +81,14 @@ function UploadButton() {
                 >
                     <AlertIcon boxSize='40px' mr={0} />
                     <AlertTitle mt={4} mb={1} fontSize='lg'>
-                    ¡Error de formato!
+                        ¡Error de formato!
                     </AlertTitle>
                     <AlertDescription maxWidth='sm'>
-                    Revisa que tu archivo sea de tipo CSV. Si el problema persiste, contacta a soporte.
+                        Revisa que tu archivo sea de tipo CSV. Si el problema persiste, contacta a soporte.
                     </AlertDescription>
-             </Alert>
+                </Alert>
             )}
-            {showSuccessAlert && ( // Show success alert if showSuccessAlert is true
+            {showSuccessAlert && (
                 <Alert
                     status='success'
                     variant='subtle'
@@ -92,13 +101,13 @@ function UploadButton() {
                 >
                     <AlertIcon boxSize='40px' mr={0} />
                     <AlertTitle mt={4} mb={1} fontSize='lg'>
-                    Archivo cargado
+                        Archivo cargado
                     </AlertTitle>
                     <AlertDescription maxWidth='sm'>
-                    Los datos se han cargado correctamente y se han guardado en la base de datos.
+                        Los datos se han cargado correctamente y se han guardado en la base de datos.
                     </AlertDescription>
                     <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
-              </Alert>
+                </Alert>
             )}
         </Box>
     );
