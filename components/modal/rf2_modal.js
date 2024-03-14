@@ -68,7 +68,7 @@ function RF2Modal() {
 
                         <Flex justifyContent="center" mt={4}>
                             <Box mr={2}>
-                                {loading ? <Skeleton height="150px" width="150px" /> : <img src="https://i.imgur.com/CqZsPLi.png" alt="Imagen 1" style={{ maxWidth: '100%', height: 'auto' }} />}
+                                {loading ? <Skeleton height="150px" width="150px" /> : <img src="https://imagizer.imageshack.com/img924/1738/GV8EtU.png" alt="Imagen 1" style={{ maxWidth: '100%', height: 'auto' }} />}
                             </Box>
                         </Flex>
 

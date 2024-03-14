@@ -72,10 +72,10 @@ function RFModal() {
 
                         <Flex justifyContent="center" mt={4}>
                             <Box mr={2}>
-                                {loading ? <Skeleton height="150px" width="150px" /> : <img src="https://i.imgur.com/J17rChf.png" alt="Imagen 1" style={{ maxWidth: '100%', height: 'auto' }} />}
+                                {loading ? <Skeleton height="150px" width="150px" /> : <img src="https://imagizer.imageshack.com/img922/1484/sqsQTC.png" alt="Imagen 1" style={{ maxWidth: '100%', height: 'auto' }} />}
                             </Box>
                             <Box ml={2}>
-                                {loading ? <Skeleton height="150px" width="150px" /> : <img src="https://i.imgur.com/R8P8Q0d.png" alt="Imagen 2" style={{ maxWidth: '100%', height: 'auto' }} />}
+                                {loading ? <Skeleton height="150px" width="150px" /> : <img src="https://imagizer.imageshack.com/img924/6403/MxPCkk.png" alt="Imagen 2" style={{ maxWidth: '100%', height: 'auto' }} />}
                             </Box>
                         </Flex>
                     </ModalBody>
