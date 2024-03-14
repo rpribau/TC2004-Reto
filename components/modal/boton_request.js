@@ -1,4 +1,4 @@
-import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react";
+import { Button, Spinner, Box, Flex, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../env/enviorment";
@@ -8,6 +8,7 @@ function BotonRequest() {
     const [isLoading, setIsLoading] = useState(false);
     const [requestError, setRequestError] = useState(false);
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+    const [responseData, setResponseData] = useState([]);
 
     const handleClick = () => {
         setIsLoading(true);
@@ -19,7 +20,7 @@ function BotonRequest() {
                 // Si la solicitud es exitosa, muestra la alerta de éxito
                 setIsLoading(false);
                 setShowSuccessAlert(true);
-                console.log(response);
+                setResponseData(response.data); // Guardar los datos de la respuesta en el estado
             })
             .catch(error => {
                 // Si hay un error en la solicitud, muestra la alerta de error
@@ -67,25 +68,34 @@ function BotonRequest() {
                 </Alert>
             )}
             {showSuccessAlert && (
-                <Alert
-                    status='success'
-                    variant='subtle'
-                    flexDirection='column'
-                    alignItems='center'
-                    justifyContent='center'
-                    textAlign='center'
-                    height='200px'
-                    mt={4}
-                >
-                    <AlertIcon boxSize='40px' mr={0} />
-                    <AlertTitle mt={4} mb={1} fontSize='lg'>
-                    Solicitud enviada
-                    </AlertTitle>
-                    <AlertDescription maxWidth='sm'>
-                    La solicitud se ha enviado correctamente.
-                    </AlertDescription>
+                <Box mt={4}>
+                    <Table variant="simple">
+                        <Thead>
+                            <Tr>
+                                <Th>id</Th>
+                                <Th>date</Th>
+                                <Th>product</Th>
+                                <Th>location</Th>
+                                <Th>order_size</Th>
+                                <Th>unit_price</Th>
+                                {/* Agregar más columnas según la estructura de tus datos */}
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {responseData.map((item, index) => (
+                                <Tr key={index}>
+                                    <Td>{item.id}</Td>
+                                    <Td>{item.date}</Td>
+                                    <Td>{item.product}</Td>
+                                    <Td>{item.location}</Td>
+                                    <Td>{item.order_size}</Td>
+                                    {/* Renderizar más columnas según la estructura de tus datos */}
+                                </Tr>
+                            ))}
+                        </Tbody>
+                    </Table>
                     <CloseButton position="absolute" right="8px" top="8px" onClick={handleCloseSuccessAlert} />
-                </Alert>
+                </Box>
             )}
         </Box>
     );
