@@ -16,6 +16,7 @@ import { FaFilter } from "react-icons/fa";
 import {Input} from "@chakra-ui/react";
 import axios from 'axios'; // Importa axios
 import { BASE_URL } from './env/enviorment';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 
 const DrawerComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
