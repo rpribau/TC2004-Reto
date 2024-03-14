@@ -19,6 +19,7 @@ function BotonRequest() {
                 // Si la solicitud es exitosa, muestra la alerta de éxito
                 setIsLoading(false);
                 setShowSuccessAlert(true);
+                console.log(response);
             })
             .catch(error => {
                 // Si hay un error en la solicitud, muestra la alerta de error
