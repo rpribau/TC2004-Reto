@@ -21,6 +21,8 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, Modal
 const DrawerComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLocations, setSelectedLocations] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [forecastData, setForecastData] = useState(null);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -41,6 +43,8 @@ const DrawerComponent = () => {
       .then(response => {
         // Manejar la respuesta de la API aquí
         console.log('Respuesta de la API:', response.data);
+        setForecastData(response.data); // Guardar los datos en el estado
+        setModalOpen(true); // Abrir el modal
       })
       .catch(error => {
         // Manejar errores de la solicitud aquí
