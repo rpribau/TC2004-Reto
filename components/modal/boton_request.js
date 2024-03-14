@@ -89,6 +89,7 @@ function BotonRequest() {
                                     <Td>{item.product}</Td>
                                     <Td>{item.location}</Td>
                                     <Td>{item.order_size}</Td>
+                                    <Td>{item.unit_price}</Td>
                                     {/* Renderizar más columnas según la estructura de tus datos */}
                                 </Tr>
                             ))}
