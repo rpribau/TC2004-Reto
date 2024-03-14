@@ -14,6 +14,8 @@ import {
 } from '@chakra-ui/react';
 import { FaFilter } from "react-icons/fa";
 import {Input} from "@chakra-ui/react";
+import axios from 'axios'; // Importa axios
+import { BASE_URL } from './env/enviorment';
 
 const DrawerComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,10 +33,60 @@ const DrawerComponent = () => {
     }
   };
 
+  // Función para manejar el click en el botón de pronóstico
+  const handleForecastClick = () => {
+    // Hacer la solicitud HTTP GET utilizando Axios
+    axios.get(BASE_URL + 'armax/forecast')
+      .then(response => {
+        // Manejar la respuesta de la API aquí
+        console.log('Respuesta de la API:', response.data);
+      })
+      .catch(error => {
+        // Manejar errores de la solicitud aquí
+        console.error('Error al hacer la solicitud:', error);
+      });
+  };
+
   return (
     <>
       <Button onClick={handleToggle}><FaFilter style={{ marginRight: "0.5rem" }} />Filtrar</Button>
       <Button ml={5} colorScheme="green"> Guardar información (.zip) </Button>
+      {/* Utiliza la función handleForecastClick en el evento onClick */}
+      <Button ml={5} colorScheme="red" onClick={handleForecastClick}> Pronóstico de siguiente mes </Button>
+
+      {/* Modal para mostrar los datos */}
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Tabla de Pronóstico</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {/* Tabla para mostrar los datos */}
+            <Table variant="striped" colorScheme="teal">
+              <Thead>
+                <Tr>
+                  <Th>Date</Th>
+                  <Th>Order_size</Th>
+                  {/* Añade más columnas según la estructura de tus datos */}
+                </Tr>
+              </Thead>
+              <Tbody>
+                {/* Mapea los datos y crea filas de tabla */}
+                {forecastData && forecastData.map((item, index) => (
+                  <Tr key={index}>
+                    <Td>{item.date}</Td>
+                    <Td>{item.order_size}</Td>
+                    {/* Añade más celdas según la estructura de tus datos */}
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={() => setModalOpen(false)}>Cerrar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <Drawer isOpen={isOpen} placement="left" onClose={handleToggle}>
         <DrawerOverlay>
