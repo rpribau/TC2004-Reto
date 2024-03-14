@@ -69,7 +69,7 @@ function BotonRequest() {
                     </AlertDescription>
                 </Alert>
             )}
-            <Modal isOpen={showModal} onClose={handleCloseModal}>
+            <Modal size='full' isOpen={showModal} onClose={handleCloseModal} >
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Tabla de datos</ModalHeader>
