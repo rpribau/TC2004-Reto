@@ -14,7 +14,7 @@ const LogoBox = styled.span`
 `
 
 const Logo = () => {
-    const bearSleepImg = 'https://i.imgur.com/PrnoA0c.png'
+    const bearSleepImg = 'https://imagizer.imageshack.com/img922/7131/E7tMD7.png'
 
     return(
         <Link legacyBehavior href="/">
