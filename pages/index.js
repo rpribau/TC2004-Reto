@@ -8,6 +8,7 @@ import Instructions from '../components/instructions'
 import BotonRequest from '../components/modal/boton_request';
 import HolidayButton from '../components/holiday_button';
 import HolidayUpload from '../components/holiday-upload';
+import PromocionButton from '../components/promocion';
 
 const Page = () => {
     const [isClient, setIsClient] = useState(false)
@@ -41,6 +42,8 @@ const Page = () => {
             </Flex>
             {isClient && <HolidayButton />}
             {isClient && <HolidayUpload />}
+            {isClient && <PromocionButton />}
+
 
 
             <Heading as="h2" variant="page-title" mt={7}>
