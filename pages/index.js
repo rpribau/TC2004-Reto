@@ -6,6 +6,7 @@ import { Text } from '@chakra-ui/react'
 import Models from '../components/models'
 import Instructions from '../components/instructions'
 import BotonRequest from '../components/modal/boton_request';
+import HolidayButton from '../components/holiday_button';
 
 
 const Page = () => {
@@ -32,6 +33,8 @@ const Page = () => {
 
                 <UploadButton />
                 {isClient && <BotonRequest />}
+                {isClient && <HolidayButton />}
+
 
                 <Heading as="h2" variant="page-title" mt={7}>
                     Modelos

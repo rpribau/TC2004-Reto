@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../env/enviorment";
 import { SiAiohttp } from "react-icons/si";
+import { BASE_URL } from "../env/enviorment";
 
 function BotonRequest() {
     const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,7 @@ function BotonRequest() {
     };
 
     return (
-        <Box mt={10} display="flex" justifyContent="center" flexDirection="column">
+        <Box mt={5} display="flex" justifyContent="center" flexDirection="column">
             <Button
                 colorScheme="blue"
                 onClick={handleClick}
