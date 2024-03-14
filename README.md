@@ -1,6 +1,6 @@
 # TC2004-Reto
 
-<img src = "https://i.imgur.com/pdXvumE.png">
+<img src = "https://imagizer.imageshack.com/img924/4211/XLNETh.png">
 
 During the class TC2004B - Data Science Analysis, we develop a business tool for Don Colchon to forecast their sales using ML models such as:
 
