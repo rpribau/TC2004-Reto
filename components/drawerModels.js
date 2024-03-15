@@ -60,7 +60,7 @@ const DrawerComponent = () => {
       <Button ml={5} colorScheme="red" onClick={handleForecastClick}> Pronóstico de siguiente mes </Button>
 
       {/* Modal para mostrar los datos */}
-      <Modal size={full} isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+      <Modal size='full' isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Tabla de Pronóstico</ModalHeader>
